@@ -1,0 +1,326 @@
+{
+  "datasets": [
+    {
+      "name": "7201491b",
+      "displayName": "Live_KPIs",
+      "queryLines": [
+        "select * from gold_live_kpis "
+      ],
+      "catalog": "workspace",
+      "schema": "realtime"
+    },
+    {
+      "name": "1feb8c79",
+      "displayName": "Untitled dataset",
+      "queryLines": [
+        "select * from workspace.realtime.gold_revenue_per_minute"
+      ],
+      "catalog": "workspace",
+      "schema": "realtime"
+    },
+    {
+      "name": "c036f7a0",
+      "displayName": "gold_pickup_demand",
+      "config": {
+        "version": "1.1",
+        "source": "workspace.realtime.gold_pickup_demand",
+        "dimensions": [
+          {
+            "name": "event_date",
+            "expr": "source.event_date",
+            "displayName": "Event Date"
+          },
+          {
+            "name": "city",
+            "expr": "source.city",
+            "displayName": "City"
+          },
+          {
+            "name": "pickup_area",
+            "expr": "source.pickup_area",
+            "displayName": "Pickup Area"
+          },
+          {
+            "name": "zone_id",
+            "expr": "source.zone_id",
+            "displayName": "Zone Id"
+          },
+          {
+            "name": "total_rides",
+            "expr": "source.total_rides",
+            "displayName": "Total Rides"
+          },
+          {
+            "name": "completed_rides",
+            "expr": "source.completed_rides",
+            "displayName": "Completed Rides"
+          },
+          {
+            "name": "cancelled_rides",
+            "expr": "source.cancelled_rides",
+            "displayName": "Cancelled Rides"
+          },
+          {
+            "name": "cancellation_rate_pct",
+            "expr": "source.cancellation_rate_pct",
+            "displayName": "Cancellation Rate Pct"
+          },
+          {
+            "name": "avg_surge",
+            "expr": "source.avg_surge",
+            "displayName": "Avg Surge"
+          },
+          {
+            "name": "revenue_inr",
+            "expr": "source.revenue_inr",
+            "displayName": "Revenue Inr"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "f3bc83c3",
+      "displayName": "Executive Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "ec1c5252",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"font-size: 18px;\">Ride Analytics -Executive Command Center</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "total-review",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "7201491b",
+                  "fields": [
+                    {
+                      "name": "sum(total_revenue_inr)",
+                      "expression": "SUM(`total_revenue_inr`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Review"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_revenue_inr)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 4,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "active-drivers",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "7201491b",
+                  "fields": [
+                    {
+                      "name": "sum(active_drivers)",
+                      "expression": "SUM(`active_drivers`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Active Drivers"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(active_drivers)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 2,
+            "width": 4,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "total-rides",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "7201491b",
+                  "fields": [
+                    {
+                      "name": "sum(total_rides)",
+                      "expression": "SUM(`total_rides`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Rides"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_rides)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 2,
+            "width": 4,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "cancellation-rate",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "7201491b",
+                  "fields": [
+                    {
+                      "name": "sum(cancellation_rate_pct)",
+                      "expression": "SUM(`cancellation_rate_pct`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Cancellation Rate"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(cancellation_rate_pct)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 5,
+            "width": 4,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "d723dc45",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c036f7a0",
+                  "fields": [
+                    {
+                      "name": "avg(cancelled_rides)",
+                      "expression": "AVG(`cancelled_rides`)"
+                    },
+                    {
+                      "name": "sum(avg_surge)",
+                      "expression": "SUM(`avg_surge`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "avg(cancelled_rides)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(avg_surge)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 5,
+            "width": 6,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
